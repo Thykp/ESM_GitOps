@@ -1,0 +1,13 @@
+apiVersion: dataprotection.azure.com/v1alpha1
+kind: BackupSchedule
+metadata:
+  name: aks-backup-schedule
+spec:
+  # Cron expression for backups at 00:00 and 12:00 every day
+  schedule: "0 0,12 * * *"
+  retentionPolicy:
+    days: 3  # Retain backups for 3 days
+  backupConfiguration:
+    backupType: full  # This could also be "incremental" based on your needs
+    targetResources:
+      - namespace: default  # Specify the target namespace or other resources as required
